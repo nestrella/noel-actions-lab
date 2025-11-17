@@ -2,6 +2,8 @@ name: Manual Hello World
 
 on:
   workflow_dispatch:
+  push:
+    
 env:
   GREETING_MESSAGE: "Hola Mundo!"
   GOODBYE_MESSAGE: "Adios Mundo Cruel!"
