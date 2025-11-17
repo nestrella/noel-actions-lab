@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print ${GREETING_MESSAGE}
-        run: echo "${GREETING_MESSAGE} from ${{ needs.get-repo-name-and-date.outputs.repo_name}} at ${{ needs.get-repo-name-and-date.outputs.current_date }}
+        run: echo "${GREETING_MESSAGE} from ${{ needs.get-repo-name-and-date.outputs.repo_name}} at ${{ needs.get-repo-name-and-date.outputs.current_date }} "
 
   say-goodbye:
     needs: say-hello
