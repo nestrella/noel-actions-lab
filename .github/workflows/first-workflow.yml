@@ -8,7 +8,17 @@ env:
   GREETING_MESSAGE: "Hola Mundo!"
   GOODBYE_MESSAGE: "Adios Mundo Cruel!"
 jobs:
+  lint-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Run Yaml lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .
   get-repo-name-and-date:
+    needs: lint-yaml
     runs-on: ubuntu-latest
     outputs:
         repo_name: ${{ steps.set-values.outputs.repo_name }}
