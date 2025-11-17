@@ -11,8 +11,10 @@ jobs:
     outputs:
         repo_name: ${{ steps.set-values.outputs.repo_name }}
         current_date: ${{ steps.set-values.outputs.current_date }}
+        
     steps:
       - name: Print Get Repo Name and Date
+        id: set-values
         run: | 
           echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_OUTPUT
           echo "CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> GITHUB_OUTPUT
