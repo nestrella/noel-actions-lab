@@ -3,7 +3,7 @@ name: Manual Hello World
 on:
   workflow_dispatch:
   push:
-    
+
 env:
   GREETING_MESSAGE: "Hola Mundo!"
   GOODBYE_MESSAGE: "Adios Mundo Cruel!"
@@ -19,7 +19,7 @@ jobs:
         id: set-values
         run: | 
           echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_OUTPUT
-          echo "CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> GITHUB_OUTPUT
+          echo "CURRENT_DATE=$(date +'%Y-%m-%d_%H:%M:%S')" >> GITHUB_OUTPUT
 
   say-hello:
     needs: get-repo-name-and-date
