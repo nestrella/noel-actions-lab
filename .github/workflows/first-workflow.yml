@@ -6,11 +6,23 @@ env:
   GREETING_MESSAGE: "Hola Mundo!"
   GOODBYE_MESSAGE: "Adios Mundo Cruel!"
 jobs:
+  get-repo-name-and-date:
+    runs-on: ubuntu-latest
+    outputs:
+        repo_name: ${{ steps.set-values.outputs.repo_name }}
+        current_date: ${{ steps.set-values.outputs.current_date }}
+    steps:
+      - name: Print Get Repo Name and Date
+        run: | 
+          echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_OUTPUT
+          echo "CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> GITHUB_OUTPUT
+
   say-hello:
+    needs: get-repo-name-and-date
     runs-on: ubuntu-latest
     steps:
       - name: Print ${GREETING_MESSAGE}
-        run: echo GREETING_MESSAGE
+        run: echo "${GREETING_MESSAGE} from ${{ needs.get-repo-name-and-date.outputs.repo_name}} at ${{ needs.get-repo-name-and-date.outputs.current_date }}
 
   say-goodbye:
     needs: say-hello
