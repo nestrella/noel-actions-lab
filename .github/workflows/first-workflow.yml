@@ -42,4 +42,3 @@ jobs:
     steps:
       - name: Print ${GOODBYE_MESSAGE}
         run: echo ${GOODBYE_MESSAGE}
-        
