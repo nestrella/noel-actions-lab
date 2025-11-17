@@ -19,7 +19,7 @@ jobs:
         id: set-values
         run: | 
           echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_OUTPUT
-          echo "CURRENT_DATE=$(date)" >> GITHUB_OUTPUT
+          echo "CURRENT_DATE=$(date)" >> $GITHUB_OUTPUT
 
   say-hello:
     needs: get-repo-name-and-date
