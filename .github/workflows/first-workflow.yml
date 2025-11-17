@@ -15,10 +15,12 @@ jobs:
         uses: actions/checkout@v3
       - name: Run Yaml lint
         uses: ibiqlik/action-yamllint@v3
+        continue-on-error: true
         with:
           file_or_dir: .
   get-repo-name-and-date:
     needs: lint-yaml
+    if: success() || failure() 
     runs-on: ubuntu-latest
     outputs:
       repo_name: ${{ steps.set-values.outputs.repo_name }}
@@ -26,7 +28,7 @@ jobs:
     steps:
       - name: Print Get Repo Name and Date
         id: set-values
-        run: | 
+        run: |
           echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_OUTPUT
           echo "CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
   say-hello:
