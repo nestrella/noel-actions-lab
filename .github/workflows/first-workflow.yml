@@ -2,17 +2,20 @@ name: Manual Hello World
 
 on:
   workflow_dispatch:
-
+env:
+  GREETING_MESSAGE: "Hola Mundo!"
+  GOODBYE_MESSAGE: "Adios Mundo Cruel!"
 jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello World
-        run: echo "Hello World!!"
+      - name: Print ${GREETING_MESSAGE}
+        run: echo GREETING_MESSAGE
+
   say-goodbye:
     needs: say-hello
     runs-on: ubuntu-latest
     if: github.status_code == '0'
     steps:
-      - name: Print Goodbye World
-        run: echo "Good Bye, World"
+      - name: Print ${GOODBYE_MESSAGE}
+        run: echo ${GOODBYE_MESSAGE}
